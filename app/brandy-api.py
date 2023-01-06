@@ -2,11 +2,21 @@ from fastapi import FastAPI, HTTPException
 from app import generate_branding_description, generate_branding_keywords
 from pydantic import BaseModel
 from mangum import Mangum
+from fastapi.middleware.cors import CORSMiddleware
 
 MAX_INPUT_WORD_LIMIT = 200
 
 app = FastAPI()
 handler = Mangum(app)
+
+# enable React frontend via CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=['*'],
+    allow_credentials=True,
+    allow_methods=['*'],
+    allow_headers=['*'],
+)
 
 class DescriptionBase(BaseModel):
     topic: str
