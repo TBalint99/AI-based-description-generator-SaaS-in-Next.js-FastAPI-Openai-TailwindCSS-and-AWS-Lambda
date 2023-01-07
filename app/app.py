@@ -40,7 +40,7 @@ def generate_branding_keywords(topic: str, category: str) -> str:
 def generate_branding_description(topic: str, category: str, keywords: str, num_of_words: int) -> str:
     # Load your API key from an environment variable or secret management service
     openai.api_key = openai_api_key
-    enriched_prompt = f"Generate a {num_of_words} word catchy description to a {topic} for a {category} and include these keywords: {keywords}"
+    enriched_prompt = f"Generate a {num_of_words} word catchy description in the topic of {topic} in order to advertise in a: {category} and include these keywords: {keywords}"
     response = openai.Completion.create(model="text-davinci-003", prompt=enriched_prompt, temperature=0.3, max_tokens=200)
     
     text: str = response["choices"][0]["text"].strip()

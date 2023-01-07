@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import BrandyForm from './BrandyForm'
+import BrandyResponse from './BrandyResponse'
 
 interface FormState {
   topic: string,
@@ -15,11 +17,13 @@ export default function BrandyMain() {
     topic: "",
     category: "",
     keywords: "",
-    num_of_words: 20
+    num_of_words: 25
   })
 
   const [description, setDescription] = useState<string>('')
   const [keywords, setKeywords] = useState<string[]>([])
+  const [hasResult, setHasResult] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
@@ -27,8 +31,8 @@ export default function BrandyMain() {
   }
 
   const onSubmit = async () => {
-    console.log(prompts)
 
+    setIsLoading(true)
     const json_string = JSON.stringify(prompts)
     
     const requestOptions = {
@@ -40,39 +44,47 @@ export default function BrandyMain() {
     }
 
     try {
-        const response = await fetch(BASE_URL + 'generate_branding_description_and_keywords', requestOptions)
-        console.log(BASE_URL + 'generate_branding_description_and_keywords');
-        
-        const data = await response.json()
-        console.log(data)
+      const response = await fetch(BASE_URL + 'generate_branding_description_and_keywords', requestOptions)
+      const data = await response.json()
+      //console.log(data)
+      formatResponse(data)
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }  
+  }
+
+  const formatResponse = (data: any) => {
+    setDescription(data.description)
+    setKeywords(data.keywords[0])
+    setIsLoading(false)
+    setHasResult(true)  
+  }
+
+  const handleReset = () => {
+    setHasResult(false)
+    setDescription('')
+    setKeywords([])
   }
 
   return (
     <>
       <h1>Brandy.io</h1>
-      <p>Tell me what type of catchy text would you like and I will generate you one. With extra keywords.</p>
-      <label htmlFor='topic'>What is you business dealing with?
-        <input id="topic" type="text" placeholder="e.g.: local street food restaurant with juicy burgers"
-          name="topic" value={prompts.topic} onChange={handleInputChange}
-        ></input>
-      </label>
-      <br />
-      <label htmlFor='category'>Where do you want to create content?
-        <input id="category" type="text" placeholder="e.g.: for Instagram caption"
-          name="category" value={prompts.category} onChange={handleInputChange}
-        ></input>
-      </label>
-      <br />
-      <label htmlFor='keywords'>Do you have special keywords that must be included?
-        <input id="keywords" type="text" placeholder="e.g.: juicy, fresh, also vegan"
-          name="keywords" value={prompts.keywords} onChange={handleInputChange}
-        ></input>
-      </label>
-      <br />
-      <button onClick={onSubmit}>Submit</button>
+      {
+        hasResult ?
+        <BrandyResponse
+          description={description}
+          keywords={keywords}
+          onClick={handleReset}
+        /> :
+        <BrandyForm
+          topic={prompts.topic}
+          category={prompts.category}
+          keywords={prompts.keywords}
+          onChange={handleInputChange}
+          onClick={onSubmit}
+          isLoading={isLoading}
+        />
+      }
     </>
   )
 }
