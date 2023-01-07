@@ -9,10 +9,17 @@ MAX_INPUT_WORD_LIMIT = 200
 app = FastAPI()
 handler = Mangum(app)
 
+origins = [
+    "http://localhost:3000",
+    "https://localhost:3000",
+    "http://localhost:8000",
+    "https://localhost:8000",
+]
+
 # enable React frontend via CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=['*'],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=['*'],
     allow_headers=['*'],

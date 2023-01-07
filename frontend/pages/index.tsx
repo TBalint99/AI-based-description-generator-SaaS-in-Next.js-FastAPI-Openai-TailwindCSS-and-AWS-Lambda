@@ -14,7 +14,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/brandy_logo_removedbg.ico" />
       </Head>
-      <BrandyMain />
+      <div className='h-screen bg-slate-800 text-white flex justify-center align-middle'>
+        <BrandyMain />
+      </div>
     </>
   )
 }

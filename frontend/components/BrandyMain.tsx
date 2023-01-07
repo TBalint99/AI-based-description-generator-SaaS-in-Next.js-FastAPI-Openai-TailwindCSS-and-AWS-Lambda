@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import BrandyForm from './BrandyForm'
+import BrandyGlass from './BrandyGlass'
 import BrandyResponse from './BrandyResponse'
 
 interface FormState {
@@ -67,8 +68,8 @@ export default function BrandyMain() {
   }
 
   return (
-    <>
-      <h1>Brandy.io</h1>
+    <div className='m-auto bg-slate-400 w-10/12 md:w-6/12 rounded-lg'>
+      <h1 className='text-3xl text-center mt-5 mb-1'>Brandy.io</h1>
       {
         hasResult ?
         <BrandyResponse
@@ -85,6 +86,6 @@ export default function BrandyMain() {
           isLoading={isLoading}
         />
       }
-    </>
+    </div>
   )
 }
