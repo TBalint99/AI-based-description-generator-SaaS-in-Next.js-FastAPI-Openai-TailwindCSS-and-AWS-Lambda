@@ -14,6 +14,8 @@ origins = [
     "https://localhost:3000",
     "http://localhost:8000",
     "https://localhost:8000",
+    "https://brandy-io.vercel.app/",
+    "http://brandy-io.vercel.app/"
 ]
 
 # enable React frontend via CORS
