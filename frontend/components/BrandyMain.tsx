@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
 import BrandyForm from './BrandyForm'
-import BrandyGlass from './BrandyGlass'
 import BrandyResponse from './BrandyResponse'
 
 interface FormState {
