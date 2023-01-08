@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React, { useState } from 'react'
 import BrandyForm from './BrandyForm'
 import BrandyGlass from './BrandyGlass'
@@ -68,8 +69,14 @@ export default function BrandyMain() {
   }
 
   return (
-    <div className='m-auto bg-slate-400 w-10/12 md:w-6/12 rounded-lg'>
-      <h1 className='text-3xl text-center mt-5 mb-1'>Brandy.io</h1>
+    <div className='m-auto bg-slate-400 w-10/12 md:w-5/12 rounded-lg container'>
+      <Image
+        alt="logo"
+        src={"/../public/brandy_logo_removedbg.png"}
+        width={200} height={200}
+        className='mx-auto mt-3 hidden'
+      />
+      <h1 className='text-5xl text-center mt-3 mb-1 py-3 font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-800'>Brandy.io</h1>
       {
         hasResult ?
         <BrandyResponse
