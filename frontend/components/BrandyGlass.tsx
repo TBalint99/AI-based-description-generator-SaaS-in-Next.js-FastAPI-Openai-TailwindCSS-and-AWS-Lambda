@@ -41,8 +41,9 @@ const Cube = () => {
 export default function BrandyGlass() {
   return (
     <div className='h-screen bg-slate-500 z-0'>
-      <div className='z-10 text-center'>
-        <p className=''>Ready for growing your bank account?</p>
+      <div className='z-10 text-center pt-10'>
+        <p className='text-white text-xl font-semibold'>Ready for growing your bank account?</p>
+        <p className='text-white text-xl font-semibold'>Scroll down...</p>
       </div>
       <Suspense fallback={null}>
         <Canvas background='black'>
