@@ -14,7 +14,9 @@ const characterLimit: number = 60
 
 export default function BrandyForm({ topic, category, keywords, onChange, onClick, isLoading }: Props) {
   return (
-    <div className='px-3 pb-3 sm:mx-3 sm:px-10 flex flex-col'>
+    <div
+        className='px-3 pb-3 sm:mx-3 sm:px-10 flex flex-col'
+    >
         <p className='mb-8 sm:text-md text-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-800'>Tell me what type of catchy text you want and I will generate you one.<br/>With extra keywords!</p>
         <label className='font-medium text-gray-200' htmlFor='topic'>What is you business dealing with?</label>
         <input id="topic" type="text" placeholder="e.g.: local street food restaurant with juicy burgers"
@@ -35,6 +37,7 @@ export default function BrandyForm({ topic, category, keywords, onChange, onClic
             className="font-light w-full h-12 rounded-md p-3 my-3 text-gray-900 bg-white border-3 border-gray-500 drop-shadow-md outline-none focus:ring-0"
         ></input>
         <motion.button
+            id='scroll-to'
             whileHover={{
                 scale: 1.1,
                 transition: { duration: 0.2 },
