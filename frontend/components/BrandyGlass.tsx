@@ -44,7 +44,7 @@ const Cube = () => {
 
 export default function BrandyGlass() {
   return (
-    <div className='h-screen bg-slate-500 z-0'>
+    <div className='h-screen bg-gradient-to-b from-slate-500 to-slate-800 z-0'>
       
       <motion.div
         className='z-30 text-center pt-10'

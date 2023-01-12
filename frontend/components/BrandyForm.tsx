@@ -49,7 +49,7 @@ export default function BrandyForm({ topic, category, keywords, onChange, onClic
         >Submit</motion.button>
         {
             isLoading && (
-                <div className='flex flex-row items-center sm:mt-3 py-2 gap-1'>
+                <div className='flex flex-row items-center sm:mt-2 py-2 gap-1'>
                 <p className='mr-2'>Your response is being generated...</p>
                     {
                         [0,1,2].map(() => (
